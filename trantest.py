@@ -4,7 +4,7 @@ import win32con
 import win32gui
 
 pygame.init()
-screen = pygame.display.set_mode((800, 600)) # For borderless, use pygame.NOFRAME
+screen = pygame.display.set_mode((800, 600), pygame.NOFRAME)
 done = False
 fuchsia = (255, 0, 128)  # Transparency color
 dark_red = (139, 0, 0)
