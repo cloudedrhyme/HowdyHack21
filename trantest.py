@@ -3,6 +3,12 @@ import win32api
 import win32con
 import win32gui
 import movement
+from pygame import mixer  # Load the popular external library
+
+# mixer.init()
+# mixer.music.load('C:/Users/Clown/Downloads/Rick_Roll.mp3')
+# mixer.music.play()
+
 
 pygame.init()
 flags = pygame.NOFRAME
@@ -19,13 +25,15 @@ win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE,
 # Set window transparency color
 win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(*fuchsia), 0, win32con.LWA_COLORKEY)
 
-movement.test(x,y)
 
+rev = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
+    
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
 
     screen.fill(fuchsia)  # Transparent background
-    pygame.draw.rect(screen, dark_red, pygame.Rect(100, 50, 10, 60))
+    rev = movement.update(rev)
+    pygame.draw.rect(screen, dark_red, rev)
     pygame.display.update()
