@@ -47,6 +47,7 @@ def update(rectobj,goal,revbox):
     else:
         mag = abs(math.sqrt((goal[0] - rectobj.centerx) ** 2 + (goal[1] - rectobj.centery) ** 2))
         rectobj.move_ip(round(speedconst * ((goal[0] - rectobj.centerx)/mag)), round(speedconst * ((goal[1] - rectobj.centery)/mag)))
+        pygame.time.wait(50)
     return rectobj,goal
 
 def RevUpdate(revbox,revboxVal):
