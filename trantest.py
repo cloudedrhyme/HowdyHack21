@@ -26,7 +26,8 @@ win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE,
 win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(*fuchsia), 0, win32con.LWA_COLORKEY)
 
 
-rev = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
+logo = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 80, 80))
+#rev = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
     
 while not done:
     for event in pygame.event.get():
@@ -34,6 +35,6 @@ while not done:
             done = True
 
     screen.fill(fuchsia)  # Transparent background
-    rev = movement.update(rev)
-    pygame.draw.rect(screen, dark_red, rev)
+    #rev = movement.update(rev)
+    pygame.draw.rect(screen, dark_red, logo)
     pygame.display.update()
