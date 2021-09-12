@@ -36,6 +36,15 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
     screen.fill(fuchsia)  # Transparent background
+<<<<<<< Updated upstream
     #rev = movement.update(rev)
     pygame.draw.rect(screen, dark_red, rev)
+=======
+    win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,0,0,0,0,0x0001)
+    revbox = movement.RevUpdate(revbox,revboxVal)
+    rev,goal,revMovement = movement.update(rev,goal,revbox,revMovement)
+    all_sprites.draw(screen)
+    pygame.draw.rect(screen, dark_red,revbox)
+    rev.update()
+>>>>>>> Stashed changes
     pygame.display.update()
