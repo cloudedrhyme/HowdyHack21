@@ -4,6 +4,7 @@ import win32con
 import win32gui
 import movement
 import random
+import player
 from pygame import mixer  # Load the popular external library
 # mixer.init()
 # mixer.music.load('C:/Users/Clown/Downloads/Rick_Roll.mp3')
@@ -25,12 +26,18 @@ win32gui.SetWindowLong(hwnd, win32con.GWL_EXSTYLE,
 win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(*fuchsia), 0, win32con.LWA_COLORKEY)
 rev = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
 revbox = pygame.draw.rect(screen, dark_red, pygame.Rect(x-120,y-120, 60,30))
+
+all_sprites = pygame.sprite.Group()
+all_sprites.add(rev)
 revboxVal = False
+revMovement = True
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:#Add something for touching reveille
             if revbox.collidepoint(event.pos):
                 revboxVal = True
+            if rev.rect.collidepoint(event.pos):
+                revMovement = False
         elif event.type == pygame.MOUSEBUTTONUP:
             revboxVal = False
         if event.type == pygame.QUIT:
