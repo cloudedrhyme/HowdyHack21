@@ -34,6 +34,8 @@ while not done:
             done = True
 
     screen.fill(fuchsia)  # Transparent background
+    win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,0,0,0,0,0x0001)
+
     rev = movement.update(rev)
     pygame.draw.rect(screen, dark_red, rev)
     pygame.display.update()
