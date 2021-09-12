@@ -32,11 +32,14 @@ win32gui.SetLayeredWindowAttributes(hwnd, win32api.RGB(*fuchsia), 0, win32con.LW
 rev = pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
 revbox = pygame.draw.rect(screen, dark_red, pygame.Rect(x-120,y-120, 60,30))
 revboxVal = False
+revMovement = True
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:#Add something for touching reveille
             if revbox.collidepoint(event.pos):
                 revboxVal = True
+            if rev.collidepoint(event.pos):
+                revMovement = False
         elif event.type == pygame.MOUSEBUTTONUP:
             revboxVal = False
         if event.type == pygame.QUIT:
@@ -44,7 +47,7 @@ while not done:
     screen.fill(fuchsia)  # Transparent background
     win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,0,0,0,0,0x0001)
     revbox = movement.RevUpdate(revbox,revboxVal)
-    rev,goal = movement.update(rev,goal,revbox)
+    rev,goal,revMovement = movement.update(rev,goal,revbox,revMovement)
     pygame.draw.rect(screen, dark_red, rev)
     pygame.draw.rect(screen, dark_red,revbox)
     pygame.display.update()

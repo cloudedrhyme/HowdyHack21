@@ -37,18 +37,21 @@ def checkGoal(tupleXY,goal):
         return True
     return False
 
-def update(rectobj,goal,revbox):
-    #print(rectobj.center)
-    x = rectobj.centerx
-    goal = findClosest(goal,revbox)
-    if checkGoal(rectobj.center,goal):
-        goal = random.choice(pointarr)
-        pygame.time.wait(500)
+def update(rectobj,goal,revbox,revMovement):
+    if revMovement:
+        goal = findClosest(goal,revbox)
+        if checkGoal(rectobj.center,goal):
+            goal = random.choice(pointarr)
+            pygame.time.wait(500)
+        else:
+            mag = abs(math.sqrt((goal[0] - rectobj.centerx) ** 2 + (goal[1] - rectobj.centery) ** 2))
+            rectobj.move_ip(round(speedconst * ((goal[0] - rectobj.centerx)/mag)), round(speedconst * ((goal[1] - rectobj.centery)/mag)))
+            pygame.time.wait(50)
     else:
-        mag = abs(math.sqrt((goal[0] - rectobj.centerx) ** 2 + (goal[1] - rectobj.centery) ** 2))
-        rectobj.move_ip(round(speedconst * ((goal[0] - rectobj.centerx)/mag)), round(speedconst * ((goal[1] - rectobj.centery)/mag)))
-        pygame.time.wait(50)
-    return rectobj,goal
+        print("Stopped?")
+        pygame.time.wait(2000)
+        revMovement = True
+    return rectobj,goal,revMovement
 
 def RevUpdate(revbox,revboxVal):
     if revboxVal:
