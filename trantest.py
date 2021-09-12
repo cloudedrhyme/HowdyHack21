@@ -27,5 +27,5 @@ while not done:
             done = True
 
     screen.fill(fuchsia)  # Transparent background
-    pygame.draw.rect(screen, dark_red, pygame.Rect(30, 30, 60, 60))
+    pygame.draw.rect(screen, dark_red, pygame.Rect(100, 50, 10, 60))
     pygame.display.update()
