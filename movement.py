@@ -1,6 +1,7 @@
 import random
 import math
 import pygame
+from pygame import mixer  # Load the popular external library
 pointarr = []
 goal = [0,0] #initialize arbitrary list
 speedconst = .75
@@ -40,12 +41,12 @@ def checkGoal(tupleXY,goal):
 def update(rectobj,goal,revbox,revMovement):
     if revMovement:
         goal = findClosest(goal,revbox)
-        if checkGoal(rectobj.center,goal):
+        if checkGoal(rectobj.center(),goal):
             goal = random.choice(pointarr)
             pygame.time.wait(500)
         else:
-            mag = abs(math.sqrt((goal[0] - rectobj.centerx) ** 2 + (goal[1] - rectobj.centery) ** 2))
-            rectobj.move_ip(round(speedconst * ((goal[0] - rectobj.centerx)/mag)), round(speedconst * ((goal[1] - rectobj.centery)/mag)))
+            mag = abs(math.sqrt((goal[0] - rectobj.centerx()) ** 2 + (goal[1] - rectobj.centery()) ** 2))
+            rectobj.move_ip(round(speedconst * ((goal[0] - rectobj.centerx())/mag)), round(speedconst * ((goal[1] - rectobj.centery())/mag)))
             pygame.time.wait(50)
     else:
         print("Stopped?")
