@@ -42,9 +42,6 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
     screen.fill(fuchsia)  # Transparent background
-    win32gui.SetWindowPos(hwnd,win32con.HWND_TOPMOST,0,0,0,0,0x0001)
-    revbox = movement.RevUpdate(revbox,revboxVal)
-    rev,goal = movement.update(rev,goal,revbox)
-    pygame.draw.rect(screen, dark_red, rev)
-    pygame.draw.rect(screen, dark_red,revbox)
+    #rev = movement.update(rev)
+    pygame.draw.rect(screen, dark_red, logo)
     pygame.display.update()

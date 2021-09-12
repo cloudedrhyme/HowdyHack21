@@ -13,6 +13,8 @@ mySurface = pygame.Surface((50, 50))
  
 mySurface2 = pygame.Surface((100, 50))
 mySurface2.fill((0,255,0))
+
+player = pygame.image.load("resources/images/dude.png")
  
 while True:
     for event in pygame.event.get():
