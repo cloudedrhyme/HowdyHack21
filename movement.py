@@ -1,14 +1,25 @@
+import random
+pointarr = []
+def init(x,y):
+    boxCount = 3
+    distx = x/boxCount
+    disty = y/boxCount
+    for y in range(boxCount):
+        for x in range(boxCount):
+            pointarr.append((random.randrange(distx * x, distx * (x+1),1),random.randrange(disty * y, disty * (y+1),1)))
+    print(pointarr)
+    return pointarr
+
+
+
 
 
 
 def update(rectobj):
-    print(rectobj.center)
+    #print(rectobj.center)
     x = rectobj.centerx
-    if(x-60):
-        x = -5
-    else:
-        x=5
-    
-    rectobj = rectobj.move(x,0)
+
+
+    rectobj.update(random.choice(pointarr),rectobj.size)
 
     return rectobj
